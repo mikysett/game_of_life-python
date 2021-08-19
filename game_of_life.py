@@ -66,13 +66,13 @@ def create_map():
 
 def print_board(cells, width, height):
 	print('\n' * 50) # Separate each step with newlines.
+	print('-' * (width + 1)) # Print an horizontal line as top border
 	# Print cells on the screen:
-	print('-' * width + '|')
 	for y in range(height):
 		for x in range(width):
 			print(cells[(x, y)], end='') # Print the # or space.
-		print("|") # Print a newline at the end of the row.
-	print('-' * width + '|')
+		print("|") # Print a border and a newline at the end of the row.
+	print('-' * (width + 1)) # Print an horizontal line as bottom border
 	print('Press Ctrl-C to quit.')
 
 def calculate_next_step_cells(prev_cells, width, height):
@@ -107,8 +107,7 @@ def calculate_next_step_cells(prev_cells, width, height):
 
 			# Set cell based on Conway's Game of Life rules:
 			# Living cells with 2 or 3 neighbors stay alive:
-			if prev_cells[(x, y)] == ALIVE and (numNeighbors == 2
-												or numNeighbors == 3):
+			if prev_cells[(x, y)] == ALIVE and (numNeighbors == 2 or numNeighbors == 3):
 				cells[(x, y)] = ALIVE
 			# Dead cells with 3 neighbors become alive:
 			elif prev_cells[(x, y)] == DEAD and numNeighbors == 3:
